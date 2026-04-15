@@ -1,5 +1,5 @@
-<img width="1392" height="217" alt="스크린샷 2026-04-15 오후 2 54 33" src="https://github.com/user-attachments/assets/0bb4aa5b-451b-4edf-8e8f-7f02f0d7f603" />
-<br/>
+<img width="1536" height="1024" alt="ChatGPT Image 2026년 4월 15일 오후 04_26_39" src="https://github.com/user-attachments/assets/b511ebb8-9b33-4cc1-9cc1-4d4e004b9d10" />
+
 
 # 수퍼-인터뷰
 
