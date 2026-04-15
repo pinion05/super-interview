@@ -82,7 +82,7 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 
 기본 산출물은 하나다.
 
-- `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+- `docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
 추가 파일은 deep mode이거나, score/state snapshot이나 handoff 자동화가 정말 필요할 때만 만든다.
 

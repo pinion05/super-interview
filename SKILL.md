@@ -8,8 +8,8 @@ metadata:
   tags: [requirements, clarification, design, specification, brownfield, readiness, ambiguity, discovery, planning]
   related_skills: [writing-plans]
   argument_hint: "[--quick|--standard|--deep] [--show-scores] [--autoresearch] [--threshold 0.20] <topic or change request>"
-  outputs: [docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md]
-  optional_outputs: [docs/superpowers/specs/YYYY-MM-DD-<topic>-readiness-report.json, docs/superpowers/specs/YYYY-MM-DD-<topic>-discovery-state.json]
+  outputs: [docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md]
+  optional_outputs: [docs/super-interview/specs/YYYY-MM-DD-<topic>-readiness-report.json, docs/super-interview/specs/YYYY-MM-DD-<topic>-discovery-state.json]
   inspired_by: [omx, brainstorming, deep-interview]
 ---
 
@@ -224,7 +224,7 @@ Brownfield:
 검증된 설계를 canonical spec 파일로 저장한다.
 
 기본 경로:
-`docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+`docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
 이 파일은 아래 역할을 동시에 수행한다.
 - clarified spec
@@ -363,11 +363,11 @@ Round 8+: Ontologist Mode
 ## Output Strategy
 
 ### Required
-- `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+- `docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
 ### Optional
-- `docs/superpowers/specs/YYYY-MM-DD-<topic>-readiness-report.json`
-- `docs/superpowers/specs/YYYY-MM-DD-<topic>-discovery-state.json`
+- `docs/super-interview/specs/YYYY-MM-DD-<topic>-readiness-report.json`
+- `docs/super-interview/specs/YYYY-MM-DD-<topic>-discovery-state.json`
 
 추가 파일은 다음 경우에만 만든다.
 - deep mode에서 compact score/state snapshot이 실제로 유용할 때
