@@ -1,8 +1,9 @@
-<img width="1024" height="1024" alt="ChatGPT Image 2026년 4월 15일 오후 02_23_00" src="https://github.com/user-attachments/assets/1f203716-0241-46eb-b2ea-e06ddce222e3" />
-super-interview는 구현 전에 요구사항을 명확화하고, 필요한 수준만큼만 탐색한 뒤, 승인 가능한 설계 spec으로 수렴시키는 morden spec 작성스킬.
+<img width="1392" height="217" alt="스크린샷 2026-04-15 오후 2 54 33" src="https://github.com/user-attachments/assets/0bb4aa5b-451b-4edf-8e8f-7f02f0d7f603" />
+<br/>
 
-핵심 설명:
-- OMX의 장점: 성급한 구현 대신 먼저 의도와 경계를 분해하는 실행 전 사고 discipline, ambiguity를 체계적으로 줄이고 readiness를 판단하는 인터뷰 중심 접근
+# 수퍼-인터뷰
+
+- OMX의 장점: ambiguity를 체계적으로 줄이고 readiness를 판단하는 인터뷰 중심 접근
 - Superpowers 의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
 
 즉, 이 스킬은 “질문만 많이 하는 인터뷰”도 아니고, “곧바로 설계로 점프하는 브레인스토밍”도 아니다.
