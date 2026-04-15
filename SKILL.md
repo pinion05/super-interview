@@ -7,7 +7,7 @@ license: MIT
 metadata:
   tags: [requirements, clarification, design, specification, brownfield, readiness, ambiguity, discovery, planning]
   related_skills: [writing-plans]
-  argument_hint: "[--quick|--standard|--deep] [--show-scores] [--autoresearch] [--threshold 0.20] <topic or change request>"
+  argument_hint: "[--quick|--standard|--deep] [--show-scores] [--threshold 0.20] <topic or change request>"
   outputs: [docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md]
   optional_outputs: [docs/super-interview/specs/YYYY-MM-DD-<topic>-readiness-report.json, docs/super-interview/specs/YYYY-MM-DD-<topic>-discovery-state.json]
   inspired_by: [omx, brainstorming, deep-interview]
@@ -231,8 +231,6 @@ Brownfield:
 - design doc
 - implementation handoff의 기준 문서
 
-`--autoresearch`여도 기본 산출물은 이 canonical spec 하나이며, research brief가 필요하면 그 안의 섹션으로 포함한다.
-
 ### 9. Spec Self-Review
 spec 작성 직후 바로 다듬는다.
 - placeholder / TODO / TBD 제거
@@ -350,16 +348,6 @@ Round 8+: Ontologist Mode
 - 핵심 엔티티와 관계를 정리한다.
 - “지금 말하는 workflow, planner, inbox 중 핵심 엔티티는 무엇인가요?”
 
-## `--autoresearch` guidance
-
-`--autoresearch`는 구현 spec을 버리는 별도 체계가 아니라, discovery 질문의 초점을 research mission과 evaluator로 이동시키는 옵션이다.
-
-- 먼저 “무엇을 개선/검증/반박하려는가?”를 분명히 한다.
-- 그다음 evaluator를 확보한다: benchmark command, rubric, target metric, expected output format, review condition 중 하나 이상.
-- evaluator가 실행 불가능할 정도로 모호하면 design으로 넘어가지 않는다.
-- 기본 산출물은 여전히 canonical spec 한 파일이며, 필요하면 그 안에 research brief 성격의 섹션을 포함한다.
-- 추가 JSON이나 별도 handoff schema는 명시적으로 필요할 때만 optional output으로 남긴다.
-
 ## Output Strategy
 
 ### Required
@@ -389,7 +377,6 @@ Round 8+: Ontologist Mode
 - Baseline: {greenfield는 new project/system, brownfield는 target branch/worktree/artifact}
 - Status: DRAFT | APPROVED
 - Final Ambiguity: {optional}
-- Evaluator / Validation Method: {optional, especially for --autoresearch}
 
 ## Goal
 ...
@@ -408,9 +395,6 @@ Round 8+: Ontologist Mode
 
 ## Success Criteria
 - [ ] ...
-
-## Evaluator / Validation Method (optional)
-- benchmark command / rubric / target metric / expected output format / review condition
 
 ## Existing Context
 ...

@@ -5,7 +5,7 @@
 
 - OMX의 장점: 구현 전에 intent, scope, baseline을 먼저 명확히 하는 discipline
 - Superpowers의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
-- deep-interview의 장점: ambiguity 축 기반 질문, readiness 판단, ontology/challenge/autoresearch 같은 선택형 심화 장치
+- deep-interview의 장점: ambiguity 축 기반 질문, readiness 판단, ontology/challenge 같은 선택형 심화 장치
 
 즉, 이 스킬은 “질문만 많이 하는 인터뷰”도 아니고, “곧바로 설계로 점프하는 브레인스토밍”도 아니다.
 기본은 가볍게 진행하고, ambiguity와 risk가 높을 때만 `--deep`나 선택형 모드로 더 깊게 파고들어, 결국 구현 전에 승인 가능한 한 장의 spec으로 정리하는 통합 워크플로우다.
@@ -65,11 +65,6 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 
 ## Optional flags
 
-### `--autoresearch`
-- `--quick` / `--standard` / `--deep` 위에 겹쳐서 쓰는 옵션
-- research/benchmark/evaluator가 핵심인 작업에서 discovery의 초점을 mission과 evaluator로 이동
-- 별도 필수 산출물을 늘리기보다 canonical spec 안에 research brief 성격을 포함
-
 ### `--show-scores`
 - readiness heuristic을 compact하게 보여주고 싶을 때만 켠다
 - 기본 흐름에서 항상 필요한 ceremony는 아니다
@@ -95,7 +90,6 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 - `super-interview --quick "로그인 페이지 카피만 수정"`
 - `super-interview --standard "기존 결제 플로우에 환불 상태 추적 추가"`
 - `super-interview --deep --show-scores "멀티에이전트 기반 작업 승인 파이프라인 재설계"`
-- `super-interview --deep --autoresearch "RAG chunking 전략을 benchmark 기반으로 재평가"`
 
 ## Why this repo exists
 
@@ -106,7 +100,7 @@ super-interview는 그 중복을 줄이고, 아래 원칙으로 하나의 canoni
 - 질문 단계와 설계 단계를 섞지 않음
 - 문서는 가능한 한 한 파일로 유지
 - brownfield에서는 baseline branch/worktree/artifact를 먼저 고정
-- challenge/autoresearch 같은 심화 장치는 필요할 때만 켬
+- challenge 같은 심화 장치는 필요할 때만 켬
 - spec 승인 전에는 구현으로 가지 않음
 - 승인 후 다음 단계는 `writing-plans` 하나로 고정
 
