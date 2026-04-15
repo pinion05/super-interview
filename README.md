@@ -1,5 +1,4 @@
-# super-interview
-
+<img width="1024" height="1024" alt="ChatGPT Image 2026년 4월 15일 오후 02_23_00" src="https://github.com/user-attachments/assets/1f203716-0241-46eb-b2ea-e06ddce222e3" />
 super-interview는 구현 전에 요구사항을 명확화하고, 필요한 수준만큼만 탐색한 뒤, 승인 가능한 설계 spec으로 수렴시키는 morden spec 작성스킬.
 
 핵심 설명:
