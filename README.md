@@ -1,11 +1,10 @@
 # super-interview
 
-super-interview는 구현 전에 요구사항을 명확화하고, 필요한 수준만큼만 탐색한 뒤, 승인 가능한 설계 spec으로 수렴시키는 Hermes skill 레포지토리다.
+super-interview는 구현 전에 요구사항을 명확화하고, 필요한 수준만큼만 탐색한 뒤, 승인 가능한 설계 spec으로 수렴시키는 morden spec 작성스킬.
 
 핵심 설명:
-- OMX의 장점: 성급한 구현 대신 먼저 의도와 경계를 분해하는 실행 전 사고 discipline
-- Superpowers `brainstorming`의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
-- `deep-interview`의 장점: ambiguity를 체계적으로 줄이고 readiness를 판단하는 인터뷰 중심 접근
+- OMX의 장점: 성급한 구현 대신 먼저 의도와 경계를 분해하는 실행 전 사고 discipline, ambiguity를 체계적으로 줄이고 readiness를 판단하는 인터뷰 중심 접근
+- Superpowers 의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
 
 즉, 이 스킬은 “질문만 많이 하는 인터뷰”도 아니고, “곧바로 설계로 점프하는 브레인스토밍”도 아니다.
 기본은 가볍게 진행하고, ambiguity와 risk가 높을 때만 더 깊게 파고들어, 결국 구현 전에 승인 가능한 한 장의 spec으로 정리하는 통합 워크플로우다.
