@@ -191,11 +191,11 @@ Brownfield:
 점수는 절대 판정기가 아니라 readiness를 설명하기 위한 보조 도구다.
 기본 출력에는 강제하지 않고, `--show-scores` 또는 `--deep`에서 compact하게 보여줄 수 있다.
 
-중요: 이 점수는 compact heuristic일 뿐이며, 실제 readiness gate는 별도로 scope / outputs / non-goals까지 확인해야 통과한다.
-즉 점수가 낮아도 이 축들이 비어 있으면 design으로 넘어가지 않는다.
+중요: 이 점수는 compact heuristic일 뿐이며, 실제 readiness gate는 별도로 goal / scope / constraints / outputs / success criteria / non-goals / brownfield context(해당 시)까지 확인해야 통과한다.
+즉 점수가 낮아도 이 핵심 축들이 비어 있으면 design으로 넘어가지 않는다.
 
 운영 기준:
-- all clear fast-path: scope / goal / constraints / outputs / success criteria / non-goals / context(해당 시)가 모두 실질적으로 고정되면 threshold 계산 전에 종료 가능
+- all clear fast-path: goal / scope / constraints / outputs / success criteria / non-goals / brownfield context(해당 시)가 모두 실질적으로 고정되면 threshold 계산 전에 종료 가능
 - soft warning 기준: 대체로 10라운드 안팎에서 남은 ambiguity와 이유를 요약
 - hard cap 기준: 대체로 20라운드 안팎에서 더 묻지 않고 남은 risk를 적은 spec으로 종료
 - early exit는 3라운드 이후부터 허용하되, 남은 불명확 축을 명시한다
@@ -324,7 +324,7 @@ manifest, config, repo 구조, docs로 명확한 사실은 직접 확인한다.
 - ambiguity scoring
 - ontology extraction / stability tracking
 - readiness gating
-- optional challenge mode
+- optional challenge modes
 - optional compact readiness/state outputs
 
 #### Ontology Tracking
@@ -389,7 +389,7 @@ Round 8+: Ontologist Mode
 - Baseline: {greenfield는 new project/system, brownfield는 target branch/worktree/artifact}
 - Status: DRAFT | APPROVED
 - Final Ambiguity: {optional}
-- Evaluator / Metric: {optional, especially for --autoresearch}
+- Evaluator / Validation Method: {optional, especially for --autoresearch}
 
 ## Goal
 ...

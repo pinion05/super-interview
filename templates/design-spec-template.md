@@ -6,7 +6,7 @@
 - Baseline: {greenfield는 new project/system, brownfield는 target branch/worktree/artifact}
 - Status: DRAFT | APPROVED
 - Final Ambiguity: {optional}
-- Evaluator / Metric: {optional, especially for --autoresearch}
+- Evaluator / Validation Method: {optional, especially for --autoresearch}
 
 ## Goal
 - 

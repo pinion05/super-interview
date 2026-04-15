@@ -3,9 +3,9 @@
 
 # 수퍼-인터뷰
 
-- OMX 의 장점: 구현 전에 intent, scope, baseline을 먼저 명확히 하는 discipline
-- Superpowers 의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
-- deep-interview 의 장점: ambiguity 축 기반 질문, readiness 판단, ontology/challenge/autoresearch 같은 선택형 심화 장치
+- OMX의 장점: 구현 전에 intent, scope, baseline을 먼저 명확히 하는 discipline
+- Superpowers의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
+- deep-interview의 장점: ambiguity 축 기반 질문, readiness 판단, ontology/challenge/autoresearch 같은 선택형 심화 장치
 
 즉, 이 스킬은 “질문만 많이 하는 인터뷰”도 아니고, “곧바로 설계로 점프하는 브레인스토밍”도 아니다.
 기본은 가볍게 진행하고, ambiguity와 risk가 높을 때만 `--deep`나 선택형 모드로 더 깊게 파고들어, 결국 구현 전에 승인 가능한 한 장의 spec으로 정리하는 통합 워크플로우다.
