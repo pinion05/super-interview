@@ -3,7 +3,7 @@
 
 # 수퍼-인터뷰
 
-- OMX의 장점: ambiguity를 체계적으로 줄이고 readiness를 판단하는 인터뷰 중심 접근
+- OOO(ouroboros) 의 장점: ambiguity를 체계적으로 줄이고 readiness를 판단하는 인터뷰 중심 접근
 - Superpowers 의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
 
 즉, 이 스킬은 “질문만 많이 하는 인터뷰”도 아니고, “곧바로 설계로 점프하는 브레인스토밍”도 아니다.
