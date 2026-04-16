@@ -1,16 +1,14 @@
 ---
 name: super-interview
-description: "OMX의 실행 전 명확화 discipline과 Superpowers brainstorming, deep-interview의 장점을 합쳐 Discovery → Design → 승인 가능한 spec으로 수렴시키는 통합 skill."
+description: "구현 전에 요구사항을 명확히 하고, discovery와 design review를 거쳐 승인 가능한 설계 spec으로 수렴시키는 통합 skill."
 version: 1.0.0
 author: pinion05
 license: MIT
 metadata:
   tags: [requirements, clarification, design, specification, brownfield, readiness, ambiguity, discovery, planning]
   related_skills: [writing-plans]
-  argument_hint: "[--quick|--standard|--deep] [--show-scores] [--autoresearch] [--threshold 0.20] <topic or change request>"
-  outputs: [docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md]
-  optional_outputs: [readiness-report.json, discovery-state.json]
-  inspired_by: [omx, brainstorming, deep-interview]
+  argument_hint: "[--quick|--standard|--deep] [--show-scores] [--threshold 0.20] <topic or change request>"
+  outputs: [docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md]
 ---
 
 # super-interview
@@ -18,9 +16,9 @@ metadata:
 구현 전에 요구사항을 명확화하고, 필요한 수준만큼 탐색한 뒤, 승인 가능한 설계 spec으로 정리하는 통합 skill.
 
 핵심은 단순하다.
-- OMX처럼 성급히 구현하지 않고 먼저 의도와 경계를 명확히 한다.
-- Superpowers의 `brainstorming`처럼 discovery 뒤에 design gate와 canonical spec으로 수렴한다.
-- `deep-interview`처럼 ambiguity를 체계적으로 줄이고 readiness를 판단한다.
+- 성급히 구현하지 않고 먼저 의도, 범위, 경계를 명확히 한다.
+- 필요한 만큼만 discovery를 진행한 뒤 design gate를 거쳐 하나의 canonical spec으로 수렴한다.
+- ambiguity를 체계적으로 줄이고 readiness를 확인한 뒤에만 설계로 넘어간다.
 
 즉, 이 스킬은 discovery와 design을 하나의 흐름으로 묶되, 둘을 섞지 않는다.
 항상 먼저 ambiguity를 줄이고, 충분히 명확해졌을 때만 설계로 넘어간다.
@@ -47,8 +45,7 @@ metadata:
 
 3. canonical artifact는 하나를 기본값으로 유지한다.
 - 기본 산출물은 design spec 한 파일이다.
-- deep mode에서만 readiness/state를 추가 산출물로 남긴다.
-- transcript, assumptions, key entities는 가능하면 spec appendix에 넣는다.
+- readiness 판단, discovery notes, assumptions, key entities가 더 필요하면 가능하면 spec 본문이나 appendix에 포함한다.
 
 4. 구현 전 handoff는 하나로 고정한다.
 - spec 승인 전에는 구현으로 가지 않는다.
@@ -71,14 +68,13 @@ metadata:
 - ambiguity scoring
 - ontology extraction / stability tracking
 - readiness gating
-- state persistence
 - challenge modes
 
 추천 상황:
 - 시스템 경계가 복잡한 brownfield 변경
 - 여러 하위 시스템이 얽힌 설계
-- multi-agent handoff가 필요한 경우
 - 사용자가 “추정하지 말고 명확히 하자”를 강하게 요구한 경우
+- 용어/경계가 자주 흔들려 설계 drift 위험이 큰 경우
 
 ## 핵심 운영 원칙
 
@@ -120,6 +116,12 @@ metadata:
 - brownfield라면 구조와 경계를 fact로 정리
 - 필요하면 외부 리서치로 최신 사실 수집
 
+brownfield anchoring 규칙:
+- 브랜치, worktree, 산출물이 여러 개 보이면 질문 전에 기준 baseline을 먼저 정한다.
+- 사용자가 명시하지 않았다면 merge/test용 복제본보다 실제 변경 대상 repo/worktree/branch를 baseline으로 본다.
+- 다른 worktree의 스크린샷, 리포트, fixture는 evidence로만 쓰고, 코드 맥락 질문은 baseline 기준으로 다시 anchor한다.
+- baseline 자체가 불분명하면 그 사실부터 짧게 확인하고, baseline이 정해지기 전에는 세부 설계 질문으로 들어가지 않는다.
+
 ### 2. Scope Check
 요청의 크기와 구조를 판단한다.
 - 여러 독립 하위 시스템이 섞여 있으면 먼저 분해
@@ -143,6 +145,19 @@ metadata:
 - 가능하면 객관식 또는 좁은 질문 선호
 - weakest dimension을 우선 공략
 - 한 세부사항만 너무 오래 파지 않도록 breadth control 유지
+
+답변 해석 규칙:
+- 사용자가 제시한 보기와 정확히 매칭되지 않는 shorthand(`A`, `2번 같은 쪽`, `전자`)로 답하면 추정하지 말고, 실제 선택지에 매핑하는 짧은 확인 질문을 한 번 더 한다.
+- 사용자가 답 대신 질문의 전제(branch, baseline, artifact, 목표 이해)를 교정하면 그것을 우선 context/constraint 업데이트로 반영한다.
+- 전제가 교정된 경우 필요한 사실을 다시 확인한 뒤, 미해결 결정만 이어서 묻는다.
+- 이미 해소된 부분까지 처음부터 다시 인터뷰하지 않는다.
+
+discovery guardrails:
+- fast-path: 주요 축이 모두 충분히 명확하면 추가 질문 없이 readiness check로 바로 이동한다.
+- stall rule: ambiguity가 3라운드 동안 거의 줄지 않으면, ontology 정리나 문제 재-framing 질문으로 전환한다.
+- soft warning: 질문이 길어지면 현재 남은 불명확 축과 진행/종료 선택지를 요약한다.
+- hard cap: 계속 같은 수준의 모호성만 반복되면 risk를 명시한 spec으로 수렴하고 인터뷰를 종료한다.
+- early exit: 사용자가 이 정도면 충분하다고 판단하면, 남은 risk를 적은 compact spec을 남기고 종료할 수 있다.
 
 주요 축:
 - Goal
@@ -173,6 +188,15 @@ Brownfield:
 점수는 절대 판정기가 아니라 readiness를 설명하기 위한 보조 도구다.
 기본 출력에는 강제하지 않고, `--show-scores` 또는 `--deep`에서 compact하게 보여줄 수 있다.
 
+중요: 이 점수는 compact heuristic일 뿐이며, 실제 readiness gate는 별도로 goal / scope / constraints / outputs / success criteria / non-goals / brownfield context(해당 시)까지 확인해야 통과한다.
+즉 점수가 낮아도 이 핵심 축들이 비어 있으면 design으로 넘어가지 않는다.
+
+운영 기준:
+- all clear fast-path: goal / scope / constraints / outputs / success criteria / non-goals / brownfield context(해당 시)가 모두 실질적으로 고정되면 threshold 계산 전에 종료 가능
+- soft warning 기준: 대체로 10라운드 안팎에서 남은 ambiguity와 이유를 요약
+- hard cap 기준: 대체로 20라운드 안팎에서 더 묻지 않고 남은 risk를 적은 spec으로 종료
+- early exit는 3라운드 이후부터 허용하되, 남은 불명확 축을 명시한다
+
 ### 6. Approach Exploration
 이제 2~3가지 접근법을 제안한다.
 - trade-off를 함께 설명
@@ -197,7 +221,7 @@ Brownfield:
 검증된 설계를 canonical spec 파일로 저장한다.
 
 기본 경로:
-`docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+`docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
 이 파일은 아래 역할을 동시에 수행한다.
 - clarified spec
@@ -211,11 +235,7 @@ spec 작성 직후 바로 다듬는다.
 - 단일 implementation plan으로 다룰 수 있는 범위인지 검사
 - 다의적 문장을 하나의 해석으로 좁히기
 
-### 10. Optional Commit
-작업 공간이 git 저장소이고 문서 변경을 커밋하는 흐름이 자연스러울 때만 spec을 커밋한다.
-커밋은 초안 직후가 아니라 self-review 이후에 한다.
-
-### 11. User Review Gate
+### 10. User Review Gate
 사용자가 spec을 검토하도록 요청한다.
 
 예:
@@ -223,6 +243,10 @@ spec 작성 직후 바로 다듬는다.
 
 변경 요청이 있으면 반영하고 이 게이트를 반복한다.
 사용자가 승인할 때까지 다음 단계로 넘어가지 않는다.
+
+### 11. Optional Commit
+작업 공간이 git 저장소이고 문서 변경을 커밋하는 흐름이 자연스러울 때만 spec을 커밋한다.
+커밋은 self-review와 사용자 승인 이후에만 한다.
 
 ### 12. Handoff
 사용자가 spec을 승인한 뒤에만 `writing-plans` skill을 호출한다.
@@ -266,6 +290,9 @@ manifest, config, repo 구조, docs로 명확한 사실은 직접 확인한다.
 - 관련 없는 리팩터링은 제안하지 않는다.
 - 현재 작업과 직접 관련된 구조적 문제만 설계에 포함한다.
 - 기존 패턴, 경계, 복구 전략, 테스트 방식이 있으면 먼저 재사용을 검토한다.
+- 브랜치/worktree가 여럿이면 현재 요청이 실제로 적용될 baseline을 먼저 고정한다.
+- 다른 artifact를 참고하더라도, 코드 질문은 baseline 기준 경로와 패턴을 근거로 묻는다.
+- baseline이 바뀌면 이전 질문의 전제도 함께 갱신하고 필요한 부분만 다시 묻는다.
 
 좋은 질문 예시:
 - “기존 JWT 인증 경계를 그대로 따르게 할까요?”
@@ -292,7 +319,8 @@ manifest, config, repo 구조, docs로 명확한 사실은 직접 확인한다.
 - ambiguity scoring
 - ontology extraction / stability tracking
 - readiness gating
-- state persistence
+- optional challenge modes
+- 필요하면 점수나 핵심 엔티티를 spec 안에 compact하게 포함
 
 #### Ontology Tracking
 용어와 개념 구조가 자꾸 흔들릴 때만 사용한다.
@@ -301,6 +329,8 @@ manifest, config, repo 구조, docs로 명확한 사실은 직접 확인한다.
 - new entities
 - removed entities
 - stability ratio
+- 같은 개념이면 가능한 한 같은 entity 이름을 계속 재사용한다.
+- 이름이 달라도 타입과 핵심 필드가 대부분 같으면 renamed/changed로 보고, 불필요하게 new entity로 늘리지 않는다.
 
 #### Challenge Modes
 Round 4+: Contrarian Mode
@@ -313,24 +343,16 @@ Round 6+: Simplifier Mode
 
 Round 8+: Ontologist Mode
 - 핵심 엔티티와 관계를 정리한다.
-- “지금 말하는 workflow, planner, inbox 중 핵심 엔티티는 무엇인가요?”
+- “지금 말하는 객체들 중 핵심 엔티티는 무엇이고, 서로 어떤 관계인가요?”
 
 ## Output Strategy
 
-### Required
-- `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
-
-### Optional
-- `readiness-report.json`
-- `discovery-state.json`
-
-추가 파일은 다음 경우에만 만든다.
-- deep mode이고 resume이 필요할 때
-- handoff automation이 상태 파일을 요구할 때
-- 사용자가 점수/상태 산출물을 명시적으로 원할 때
+### Default
+- `docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
 기본값은 단일 canonical spec 파일 하나다.
-가능하면 discovery transcript, assumptions, key entities는 별도 파일 대신 spec appendix에 포함한다.
+가능하면 readiness 요약, discovery notes, assumptions, key entities는 별도 상태 파일 대신 spec 본문이나 appendix에 포함한다.
+기본 동작은 별도 상태 스냅샷이나 handoff 자동화 파일을 노출하지 않는다.
 
 ## 권장 spec 구조
 
@@ -340,6 +362,7 @@ Round 8+: Ontologist Mode
 ## Metadata
 - Mode: quick | standard | deep
 - Type: greenfield | brownfield
+- Baseline: {greenfield는 new project/system, brownfield는 target branch/worktree/artifact}
 - Status: DRAFT | APPROVED
 - Final Ambiguity: {optional}
 
@@ -350,6 +373,9 @@ Round 8+: Ontologist Mode
 ...
 
 ## Constraints
+...
+
+## Outputs / Deliverables
 ...
 
 ## Non-Goals
@@ -405,7 +431,7 @@ Round 8+: Ontologist Mode
 - 구현이 금지된 단계에서 코드나 스캐폴딩을 시작한다.
 - 이미 확인 가능한 사실을 사용자에게 다시 묻는다.
 - breadth control 없이 한 세부사항만 오래 파고든다.
-- clarified-spec, design doc, notes, transcript를 모두 별도 필수 파일로 만들어 관리 부담을 키운다.
+- 하나의 설계 문서로 충분한 내용을 여러 개의 별도 필수 파일로 쪼개 관리 부담을 키운다.
 - ambiguity가 높은데도 implementation plan으로 성급히 넘어간다.
 
 ## 종료 조건
@@ -416,10 +442,8 @@ Round 8+: Ontologist Mode
 - 범위가 너무 커서 subproject decomposition 결과를 남기고 첫 번째 단위만 진행한 경우
 - 사용자가 stop / cancel / abort를 명시한 경우
 
-## 호환성 메모
+## 운영 일관성 메모
 
-- 이 스킬은 기존 `brainstorming`의 설계 게이트를 유지한다.
-- `deep-interview`의 ambiguity reduction / readiness 판단을 흡수한다.
-- OMX 스타일의 실행 전 명확화 discipline을 반영한다.
+- discovery와 design gate 규칙은 한 문서 안에서 함께 유지한다.
 - 승인 후 다음 단계는 `writing-plans` 하나로 고정한다.
-- 복잡한 로직은 한 곳에만 두어야 drift가 줄어든다.
+- 복잡한 로직은 한 곳에만 두어 drift를 줄인다.

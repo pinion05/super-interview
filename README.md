@@ -3,11 +3,11 @@
 
 # 수퍼-인터뷰
 
-- OOO(ouroboros) 의 장점: ambiguity를 체계적으로 줄이고 readiness를 판단하는 인터뷰 중심 접근
-- Superpowers 의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
+- 구현 전에 intent, scope, baseline을 먼저 명확히 한다.
+- discovery 뒤에는 design gate를 거쳐 승인 가능한 canonical spec으로 수렴한다.
+- ambiguity와 risk가 높을 때만 `--deep`로 더 깊게 확인한다.
 
-즉, 이 스킬은 “질문만 많이 하는 인터뷰”도 아니고, “곧바로 설계로 점프하는 브레인스토밍”도 아니다.
-기본은 가볍게 진행하고, ambiguity와 risk가 높을 때만 더 깊게 파고들어, 결국 구현 전에 승인 가능한 한 장의 spec으로 정리하는 통합 워크플로우다.
+즉, 이 스킬은 필요한 만큼만 질문하고, 충분히 명확해졌을 때만 설계로 넘어가, 결국 구현 전에 승인 가능한 한 장의 spec으로 정리하는 통합 워크플로우다.
 
 ## What it does
 
@@ -18,6 +18,7 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 - 자동 확인 가능한 사실은 직접 확인
 - 사용자에게는 사실이 아니라 결정만 질문
 - 가장 큰 ambiguity axis부터 줄임
+- brownfield에서는 baseline branch/worktree/artifact를 먼저 anchor
 
 2. Design
 - readiness에 도달하면 2~3개 접근법 비교
@@ -36,9 +37,11 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 
 ## Repository layout
 
-- `SKILL.md` — canonical skill definition
+- `SKILL.md` — canonical workflow source이자 skill definition
 - `templates/design-spec-template.md` — 작성용 spec 템플릿
-- `references/merge-rationale.md` — 왜 이 스킬이 기존 brainstorming/deep-interview를 합쳤는지 설명
+- `references/merge-rationale.md` — 통합 배경과 historical context
+
+세부 규칙이 README와 충돌하면 `SKILL.md`를 기준으로 본다.
 
 ## Mode summary
 
@@ -57,15 +60,27 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 - ambiguity scoring
 - ontology tracking
 - readiness gating
-- state persistence
+- optional challenge modes
+
+## Optional flags
+
+### `--show-scores`
+- readiness heuristic을 compact하게 보여주고 싶을 때만 켠다
+- 기본 흐름에서 항상 필요한 ceremony는 아니다
+
+### `--threshold <value>`
+- ambiguity readiness 기준을 상황에 맞게 더 엄격/느슨하게 조정하고 싶을 때만 사용한다
+- 기본값은 `0.20`이다
 
 ## Default output
 
 기본 산출물은 하나다.
 
-- `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+- `docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
-추가 파일은 deep mode이거나, resume/handoff 자동화에 꼭 필요할 때만 만든다.
+필요한 readiness 요약, discovery notes, assumptions, key entities는 가능하면 같은 spec 본문이나 appendix에 포함한다.
+
+기본 흐름은 항상 single-spec 중심이며, 승인 후 다음 단계는 `writing-plans`로 넘긴다.
 
 ## Recommended usage
 
@@ -77,12 +92,16 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 
 ## Why this repo exists
 
-기존에는 brainstorming, interview, deep-interview처럼 유사한 목적의 skill이 나뉘어 drift가 생기기 쉬웠다.
+유사한 discovery/spec 워크플로우가 여러 곳에 흩어져 있으면 drift가 생기기 쉽다.
 super-interview는 그 중복을 줄이고, 아래 원칙으로 하나의 canonical workflow를 제공한다.
+
+통합 배경은 `references/merge-rationale.md`에 따로 정리돼 있다.
 
 - discovery는 생략하지 않되 깊이는 적응적으로 조절
 - 질문 단계와 설계 단계를 섞지 않음
 - 문서는 가능한 한 한 파일로 유지
+- brownfield에서는 baseline branch/worktree/artifact를 먼저 고정
+- challenge 같은 심화 장치는 필요할 때만 켬
 - spec 승인 전에는 구현으로 가지 않음
 - 승인 후 다음 단계는 `writing-plans` 하나로 고정
 
