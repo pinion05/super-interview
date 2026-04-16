@@ -1,6 +1,6 @@
 ---
 name: super-interview
-description: "OMX의 실행 전 명확화 discipline과 Superpowers brainstorming, deep-interview의 장점을 합쳐 Discovery → Design → 승인 가능한 spec으로 수렴시키는 통합 skill."
+description: "구현 전에 요구사항을 명확히 하고, discovery와 design review를 거쳐 승인 가능한 설계 spec으로 수렴시키는 통합 skill."
 version: 1.0.0
 author: pinion05
 license: MIT
@@ -9,8 +9,6 @@ metadata:
   related_skills: [writing-plans]
   argument_hint: "[--quick|--standard|--deep] [--show-scores] [--threshold 0.20] <topic or change request>"
   outputs: [docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md]
-  optional_outputs: [docs/super-interview/specs/YYYY-MM-DD-<topic>-readiness-report.json, docs/super-interview/specs/YYYY-MM-DD-<topic>-discovery-state.json]
-  inspired_by: [omx, brainstorming, deep-interview]
 ---
 
 # super-interview
@@ -18,9 +16,9 @@ metadata:
 구현 전에 요구사항을 명확화하고, 필요한 수준만큼 탐색한 뒤, 승인 가능한 설계 spec으로 정리하는 통합 skill.
 
 핵심은 단순하다.
-- OMX처럼 성급히 구현하지 않고 먼저 의도와 경계를 명확히 한다.
-- Superpowers의 `brainstorming`처럼 discovery 뒤에 design gate와 canonical spec으로 수렴한다.
-- `deep-interview`처럼 ambiguity를 체계적으로 줄이고 readiness를 판단한다.
+- 성급히 구현하지 않고 먼저 의도, 범위, 경계를 명확히 한다.
+- 필요한 만큼만 discovery를 진행한 뒤 design gate를 거쳐 하나의 canonical spec으로 수렴한다.
+- ambiguity를 체계적으로 줄이고 readiness를 확인한 뒤에만 설계로 넘어간다.
 
 즉, 이 스킬은 discovery와 design을 하나의 흐름으로 묶되, 둘을 섞지 않는다.
 항상 먼저 ambiguity를 줄이고, 충분히 명확해졌을 때만 설계로 넘어간다.
@@ -47,8 +45,7 @@ metadata:
 
 3. canonical artifact는 하나를 기본값으로 유지한다.
 - 기본 산출물은 design spec 한 파일이다.
-- deep mode이거나 사용자가 명시적으로 원할 때만 readiness/state를 추가 산출물로 남길 수 있다.
-- transcript, assumptions, key entities는 가능하면 spec appendix에 넣는다.
+- readiness 판단, discovery notes, assumptions, key entities가 더 필요하면 가능하면 spec 본문이나 appendix에 포함한다.
 
 4. 구현 전 handoff는 하나로 고정한다.
 - spec 승인 전에는 구현으로 가지 않는다.
@@ -238,11 +235,7 @@ spec 작성 직후 바로 다듬는다.
 - 단일 implementation plan으로 다룰 수 있는 범위인지 검사
 - 다의적 문장을 하나의 해석으로 좁히기
 
-### 10. Optional Commit
-작업 공간이 git 저장소이고 문서 변경을 커밋하는 흐름이 자연스러울 때만 spec을 커밋한다.
-커밋은 초안 직후가 아니라 self-review 이후에 한다.
-
-### 11. User Review Gate
+### 10. User Review Gate
 사용자가 spec을 검토하도록 요청한다.
 
 예:
@@ -250,6 +243,10 @@ spec 작성 직후 바로 다듬는다.
 
 변경 요청이 있으면 반영하고 이 게이트를 반복한다.
 사용자가 승인할 때까지 다음 단계로 넘어가지 않는다.
+
+### 11. Optional Commit
+작업 공간이 git 저장소이고 문서 변경을 커밋하는 흐름이 자연스러울 때만 spec을 커밋한다.
+커밋은 self-review와 사용자 승인 이후에만 한다.
 
 ### 12. Handoff
 사용자가 spec을 승인한 뒤에만 `writing-plans` skill을 호출한다.
@@ -323,7 +320,7 @@ manifest, config, repo 구조, docs로 명확한 사실은 직접 확인한다.
 - ontology extraction / stability tracking
 - readiness gating
 - optional challenge modes
-- optional compact readiness/state outputs
+- 필요하면 점수나 핵심 엔티티를 spec 안에 compact하게 포함
 
 #### Ontology Tracking
 용어와 개념 구조가 자꾸 흔들릴 때만 사용한다.
@@ -346,25 +343,16 @@ Round 6+: Simplifier Mode
 
 Round 8+: Ontologist Mode
 - 핵심 엔티티와 관계를 정리한다.
-- “지금 말하는 workflow, planner, inbox 중 핵심 엔티티는 무엇인가요?”
+- “지금 말하는 객체들 중 핵심 엔티티는 무엇이고, 서로 어떤 관계인가요?”
 
 ## Output Strategy
 
-### Required
+### Default
 - `docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
-### Optional
-- `docs/super-interview/specs/YYYY-MM-DD-<topic>-readiness-report.json`
-- `docs/super-interview/specs/YYYY-MM-DD-<topic>-discovery-state.json`
-
-추가 파일은 다음 경우에만 만든다.
-- deep mode에서 compact score/state snapshot이 실제로 유용할 때
-- handoff automation이 상태 파일을 요구할 때
-- 사용자가 점수/상태 산출물을 명시적으로 원할 때
-- 가능하면 canonical spec과 같은 디렉터리/접두어를 써서 산출물 sprawl을 막는다
-
 기본값은 단일 canonical spec 파일 하나다.
-가능하면 discovery transcript, assumptions, key entities는 별도 파일 대신 spec appendix에 포함한다.
+가능하면 readiness 요약, discovery notes, assumptions, key entities는 별도 상태 파일 대신 spec 본문이나 appendix에 포함한다.
+기본 동작은 별도 상태 스냅샷이나 handoff 자동화 파일을 노출하지 않는다.
 
 ## 권장 spec 구조
 
@@ -443,7 +431,7 @@ Round 8+: Ontologist Mode
 - 구현이 금지된 단계에서 코드나 스캐폴딩을 시작한다.
 - 이미 확인 가능한 사실을 사용자에게 다시 묻는다.
 - breadth control 없이 한 세부사항만 오래 파고든다.
-- clarified-spec, design doc, notes, transcript를 모두 별도 필수 파일로 만들어 관리 부담을 키운다.
+- 하나의 설계 문서로 충분한 내용을 여러 개의 별도 필수 파일로 쪼개 관리 부담을 키운다.
 - ambiguity가 높은데도 implementation plan으로 성급히 넘어간다.
 
 ## 종료 조건
@@ -454,10 +442,8 @@ Round 8+: Ontologist Mode
 - 범위가 너무 커서 subproject decomposition 결과를 남기고 첫 번째 단위만 진행한 경우
 - 사용자가 stop / cancel / abort를 명시한 경우
 
-## 호환성 메모
+## 운영 일관성 메모
 
-- 이 스킬은 기존 `brainstorming`의 설계 게이트를 유지한다.
-- `deep-interview`의 ambiguity reduction / readiness 판단을 흡수한다.
-- OMX 스타일의 실행 전 명확화 discipline을 반영한다.
+- discovery와 design gate 규칙은 한 문서 안에서 함께 유지한다.
 - 승인 후 다음 단계는 `writing-plans` 하나로 고정한다.
-- 복잡한 로직은 한 곳에만 두어야 drift가 줄어든다.
+- 복잡한 로직은 한 곳에만 두어 drift를 줄인다.

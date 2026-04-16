@@ -3,12 +3,11 @@
 
 # 수퍼-인터뷰
 
-- OMX의 장점: 구현 전에 intent, scope, baseline을 먼저 명확히 하는 discipline
-- Superpowers의 장점: discovery 뒤에 바로 design gate와 canonical spec으로 수렴하는 흐름
-- deep-interview의 장점: ambiguity 축 기반 질문, readiness 판단, ontology/challenge 같은 선택형 심화 장치
+- 구현 전에 intent, scope, baseline을 먼저 명확히 한다.
+- discovery 뒤에는 design gate를 거쳐 승인 가능한 canonical spec으로 수렴한다.
+- ambiguity와 risk가 높을 때만 `--deep`로 더 깊게 확인한다.
 
-즉, 이 스킬은 “질문만 많이 하는 인터뷰”도 아니고, “곧바로 설계로 점프하는 브레인스토밍”도 아니다.
-기본은 가볍게 진행하고, ambiguity와 risk가 높을 때만 `--deep`나 선택형 모드로 더 깊게 파고들어, 결국 구현 전에 승인 가능한 한 장의 spec으로 정리하는 통합 워크플로우다.
+즉, 이 스킬은 필요한 만큼만 질문하고, 충분히 명확해졌을 때만 설계로 넘어가, 결국 구현 전에 승인 가능한 한 장의 spec으로 정리하는 통합 워크플로우다.
 
 ## What it does
 
@@ -40,7 +39,7 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 
 - `SKILL.md` — canonical workflow source이자 skill definition
 - `templates/design-spec-template.md` — 작성용 spec 템플릿
-- `references/merge-rationale.md` — 왜 이 스킬이 기존 brainstorming/deep-interview를 합쳤는지 설명
+- `references/merge-rationale.md` — 통합 배경과 historical context
 
 세부 규칙이 README와 충돌하면 `SKILL.md`를 기준으로 본다.
 
@@ -79,9 +78,9 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 
 - `docs/super-interview/specs/YYYY-MM-DD-<topic>-design.md`
 
-추가 파일은 deep mode이거나, score/state snapshot이나 handoff 자동화가 정말 필요할 때만 만든다.
+필요한 readiness 요약, discovery notes, assumptions, key entities는 가능하면 같은 spec 본문이나 appendix에 포함한다.
 
-즉, deep-interview에서 온 심화 동작은 주로 `--deep` 또는 명시적 optional output에서만 드러나며, 기본 흐름은 항상 single-spec 중심으로 유지된다.
+기본 흐름은 항상 single-spec 중심이며, 승인 후 다음 단계는 `writing-plans`로 넘긴다.
 
 ## Recommended usage
 
@@ -93,8 +92,10 @@ super-interview는 아래 두 단계를 하나의 흐름으로 합친다.
 
 ## Why this repo exists
 
-기존에는 brainstorming, interview, deep-interview처럼 유사한 목적의 skill이 나뉘어 drift가 생기기 쉬웠다.
+유사한 discovery/spec 워크플로우가 여러 곳에 흩어져 있으면 drift가 생기기 쉽다.
 super-interview는 그 중복을 줄이고, 아래 원칙으로 하나의 canonical workflow를 제공한다.
+
+통합 배경은 `references/merge-rationale.md`에 따로 정리돼 있다.
 
 - discovery는 생략하지 않되 깊이는 적응적으로 조절
 - 질문 단계와 설계 단계를 섞지 않음
